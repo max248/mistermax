@@ -56,7 +56,7 @@ String.prototype.isNumber=function(){
 String.prototype.isApostrophe=function(){
 	var match = this.match(/["]/g);
 	if (match){
-		return this.length != 0 && match.length == this.length;
+		return this.length != 0 && match.length == this.length; 
 	}
 	return false;
 };
