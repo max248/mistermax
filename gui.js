@@ -1,5 +1,5 @@
 window.addEventListener("load",function(){
-	document.getElementById("source").innerHTML="func testFunc(i int, s string)string{\n    var o, p int\n    fmt.Print(o*p)\n    s = s + \" \" + \"bar\"\n    return s\n}\n    \nfunc main() {\n    var x,z,c int\n    var y,t string\n    var b bool\n    {\n        x = 10 + 33 * 11\n        if 44 > 42 {\n            x = 10\n        } else {\n            t = \"fdfd\"\n        }\n        for true {\n            for 44 > 1 {\n                if true {\n                    fmt.Scan(&y)\n                }\n            }\n        }\n        fmt.Scan(&y)\n        for x == 0 {\n            fmt.Print(y)\n            x=x-1\n        }\n        fmt.Print(\"Hello World\")\n        t = testFunc(x, \"foo\")\n    }\n}";
+	document.getElementById("source").innerHTML="print(\"Hello, world\")\nlet people = [\"Anna\": 67, \"Beto\": 8, \"Jack\": 33, \"Sam\": 25]\nfor (name, age) in people {\n    print(\"\\\(name) is \\(age) years old.\")\n}";
 
 	document.getElementById("startBtn").addEventListener("click",function(event)
 	{
