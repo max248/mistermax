@@ -1,5 +1,5 @@
 window.addEventListener("load",function(){
-	document.getElementById("source").innerHTML="   print(\"Hello, world\")\nlet people = [\"Anna\": 67, \"Beto\": 8, \"Jack\": 33, \"Sam\": 25]\nfor (name, age) in people {\n    print(\"\\\(name) is \\(age) years old.\")\n}";
+	document.getElementById("source").innerHTML="Print(\"Hello, world\")\nlet people = [\"Anna\": 67, \"Beto\": 8, \"Jack\": 33, \"Sam\": 25]\nfor (name, age) in people {\n    print(\"\\\(name) is \\(age) years old.\")\n}";
 
 	document.getElementById("startBtn").addEventListener("click",function(event)
 	{
