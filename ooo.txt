@@ -1,0 +1,6 @@
+<!--><audio src="123.mp3"></audio>
+<!-->
+<!--><center><embed src="123.mp3" autostart="true" hidden="false" loop="true" width="300" height="65" align="center">
+</embed>
+</center>
+<!-->

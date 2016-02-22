@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>My web site</title>
+	<link rel="stylesheet" href="website.css">
+	<script src="website.js"></script>
+	<script src="gui.js"></script>
+	<script src="translator.js"></script>
+	<script src="jsonparser.js"></script>
+	<script src="lexer.js"></script>
+	<script src="parser.js"></script>
+	<script src="jquery.js"></script>
+	<script src="bootstrap.min.js"></script>
+
+
+
+</head>
+<body>
+
+	<marquee behavior="scroll" direction="right">
+		<h2>Translator Swift -> Groovy</h2>
+	</marquee>
+	<center>
+		<div >
+			<div>
+				<table border="2"  width="600" >
+					<tr>
+						<td> Swift
+							<textarea id="source"></textarea>	
+						</td>
+						<td>Groovy
+							<textarea id="output"  readonly="true"></textarea>	
+						</td>
+					</tr>
+					<td>
+					<button id="startBtn" type="button">Translate</button>
+					</td>
+				</table>
+			</div>
+		</div>
+	</center>
+<details >
+        <summary>Output information</summary>
+        <table cellspacing="0" border="1">
+            <thead>
+            <tr>
+                <th>Errors</th>
+            </tr>
+            </thead>
+            <tbody id="errors">
+            </tbody>
+        </table>
+        <div >
+            <div >
+                <table  cellspacing="0" border="1">
+                    <thead>
+                    <tr>
+                        <th>Parse tree</th>
+                    </tr>
+                    </thead>
+                    <tbody id="parseTreeTable">
+                    </tbody>
+                </table>
+            </div>
+            <div >
+                <table  cellspacing="0" border="1">
+                    <thead>
+                    <tr>
+                        <th>Lexeme</th>
+                        <th>Type</th>
+                        <th>Line</th>
+                    </tr>
+                    </thead>
+                    <tbody id="lexemsTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+<script src="jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script>
+    $("textarea").keydown(function(e) {
+        if(e.keyCode === 9) {
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+
+            var $this = $(this);
+            var value = $this.val();
+            $this.val(value.substring(0, start)
+                    + "    "
+                    + value.substring(end));
+            this.selectionStart = this.selectionEnd = start + 4;
+            e.preventDefault();
+        }
+    });
+
+    function readFileToSource(path) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", path, false);
+        rawFile.onreadystatechange = function ()
+        {
+            if(rawFile.readyState === 4)
+            {
+                if(rawFile.status === 200 || rawFile.status == 0)
+                {
+                    var allText = rawFile.responseText;
+                    document.getElementById("source").innerHTML = allText;
+                    document.getElementById("output").innerHTML = "";
+                }
+            }
+        }
+        rawFile.send(null);
+    }
+</script>
+
+
+</body>
+</html>
