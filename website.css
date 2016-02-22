@@ -5,6 +5,7 @@ html{
 	color: yellow;
 }
 textarea{
+	background-color: olive;
 	width: 500px;
 	height: 500px
 }
