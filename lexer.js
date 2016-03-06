@@ -1,7 +1,3 @@
-/*
- * Created by Dmitry on 25.09.2015.
- */
-
 // Лексический анализатор
 Translator.prototype.Lexer = function () {
 
