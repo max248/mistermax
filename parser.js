@@ -1,6 +1,3 @@
-/**
- * Created by Dmitry on 26.09.2015.
- */
 // Синтаксический анализатор
 Translator.prototype.Parser = function () {
     
@@ -35,7 +32,6 @@ Translator.prototype.Parser = function () {
      * Методы Parser'а
      */
     /** Проверка граматики < программа >
-     * @return {boolean}
      */
     this.Program = function () {
         if(this.Lexems.length == 0) {
