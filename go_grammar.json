@@ -1,0 +1,221 @@
+{
+    "start"     : "START",
+    "terms"     :
+    [
+        "ident", "int_const", "float_const", "func_lex", "if_lex", "else_lex",
+        "for_lex", "range_lex", "case_lex", "break_lex", "default_lex", "switch_lex",
+        "var_lex", "bool_lex", "int_lex", "float_lex", "string_lex", "return_lex",
+        "string_const", "and", "or", "greater_or_eq", "less_or_eq", "not_equal",
+        "is_equal", "assing", "plus_eq", "minus_eq", "div_eq", "mod_eq", "mul_eq",
+        "plus", "minus", "mult", "div", "mod", "equating", "greater", "less",
+        "not", "inc", "dec", "open_parentheses", "close_parentheses", "open_bracket", "close_bracket", "semicolon",
+        "colon", "comma", "point", "open_brace", "close_brace", "print", "scan", "pow", "main_lex", "bool_const",
+        "in_lex", "new_line", "amp", "make_lex"
+    ],
+
+    "rules"     : {
+        "HSPACE" : [
+            [],
+            ["NOT_VOID_HSPACE"]
+        ],
+
+        "NOT_VOID_HSPACE" : [
+            ["new_line"],
+            ["NOT_VOID_HSPACE", "new_line"]
+        ],
+
+        "START" : [
+            ["PROG", "end"]
+        ],
+
+        "PROG" : [
+            ["HSPACE", "FUNCTIONS", "MAIN_FUNCTION", "FUNCTIONS"]
+        ],
+
+        "FUNCTIONS" : [
+            [],
+            ["FUNCTIONS", "FUNCTION"]
+        ],
+
+        "FUNCTION" : [
+            ["func_lex", "ident", "open_parentheses", "INPUT_PARAMS", "close_parentheses", "TYPE_WITH_VOID",
+                "open_brace", "HSPACE", "VAR_DECLARATIONS", "OPERATORS", "close_brace", "HSPACE"]
+        ],
+
+        "MAIN_FUNCTION" : [
+            ["func_lex", "main_lex", "open_parentheses", "close_parentheses",
+                "open_brace", "HSPACE", "VAR_DECLARATIONS", "OPERATORS", "close_brace", "HSPACE"]
+        ],
+
+        "TYPE_WITH_VOID" : [
+            [],
+            ["TYPE"]
+        ],
+
+        "ARR_TYPE" : [
+            ["open_bracket", "close_bracket", "TYPE"]
+        ],
+
+        "TYPE" : [
+            ["int_lex"],
+            ["float_lex"],
+            ["string_lex"],
+            ["bool_lex"],
+            ["ARR_TYPE"]
+        ],
+
+        "INPUT_PARAMS" : [
+            [],
+            ["NOTVOID_INPUT_PARAMS"]
+        ],
+
+        "NOTVOID_INPUT_PARAMS" : [
+            ["INPUT_PARAM"],
+            ["NOTVOID_INPUT_PARAMS", "comma", "INPUT_PARAM"]
+        ],
+
+        "L_VALUE" : [
+            ["ident"],
+            ["L_VALUE", "open_bracket", "EXPR", "close_bracket"]
+        ],
+
+        "INPUT_PARAM" : [
+            ["ident", "TYPE"]
+        ],
+
+        "OPERATORS" : [
+            [],
+            ["OPERATORS", "OPERATOR"]
+        ],
+
+        "NOT_VOID_VAR_DECLARATIONS" : [
+            ["VAR_DECL", "NOT_VOID_HSPACE"],
+            ["NOT_VOID_VAR_DECLARATIONS", "VAR_DECL", "NOT_VOID_HSPACE"]
+        ],
+
+        "VAR_DECLARATIONS" : [
+            [],
+            ["NOT_VOID_VAR_DECLARATIONS"]
+        ],
+
+        "OPERATOR" : [
+            ["FUNCTION_CALL", "NOT_VOID_HSPACE"],
+            ["EQUATE", "NOT_VOID_HSPACE"],
+            ["CYCLES", "NOT_VOID_HSPACE"],
+            ["IF", "NOT_VOID_HSPACE"],
+            ["return_lex", "EXPR", "NOT_VOID_HSPACE"],
+            ["print", "open_parentheses", "NOTVOID_PARAMS", "close_parentheses", "NOT_VOID_HSPACE"],
+            ["scan", "open_parentheses", "amp", "L_VALUE", "close_parentheses", "NOT_VOID_HSPACE"],
+            ["return_lex", "NOT_VOID_HSPACE"]
+        ],
+
+        "OPERATORS_BLOCK" : [
+            ["open_brace", "HSPACE", "OPERATORS", "close_brace"]
+        ],
+
+        "FUNCTION_CALL" : [
+            ["ident", "open_parentheses", "PARAMS", "close_parentheses"]
+        ],
+
+        "PARAMS" : [
+            [],
+            ["NOTVOID_PARAMS"]
+        ],
+
+        "NOTVOID_PARAMS" : [
+            ["EXPR"],
+            ["NOTVOID_PARAMS", "comma", "EXPR"]
+        ],
+
+        "EQUATE" : [
+            ["L_VALUE", "equating", "EXPR"]
+        ],
+
+        "CYCLES" : [
+            ["FOR"],
+            ["WHILE"],
+            ["FOR_IN"]
+        ],
+
+        "FOR" : [
+            ["for_lex", "FOR_INIT", "semicolon", "EXPR", "semicolon", "FOR_ITER", "OPERATORS_BLOCK"]
+        ],
+
+        "WHILE" : [
+            ["for_lex", "EXPR", "OPERATORS_BLOCK"]
+        ],
+
+        "FOR_IN" : [
+            ["for_lex", "ident", "in_lex", "L_VALUE", "OPERATORS_BLOCK"]
+        ],
+
+        "FOR_INIT" : [
+            [],
+            ["EQUATE"]
+        ],
+
+        "FOR_ITER" : [
+            [],
+            ["EQUATE"]
+        ],
+
+        "IF" : [
+            ["if_lex", "EXPR", "OPERATORS_BLOCK"],
+            ["if_lex", "EXPR", "OPERATORS_BLOCK", "else_lex", "OPERATORS_BLOCK"],
+            ["if_lex", "EXPR", "OPERATORS_BLOCK", "else_lex", "IF"]
+        ],
+
+        "VAR_DECL" : [
+            ["var_lex", "ident"]
+        ],
+
+        "EXPR0" : [
+            ["L_VALUE"],
+            ["FUNCTION_CALL"],
+            ["int_const"],
+            ["float_const"],
+            ["bool_const"],
+            ["string_const"],
+            ["open_parentheses", "EXPR", "close_parentheses"],
+            ["not", "EXPR0"],
+            ["plus", "EXPR0"],
+            ["minus", "EXPR0"],
+            ["int_lex", "open_parentheses", "EXPR", "close_parentheses"],
+            ["float_lex", "open_parentheses", "EXPR", "close_parentheses"],
+            ["make_lex", "open_parentheses", "ARR_TYPE", "comma", "EXPR", "close_parentheses"]
+        ],
+
+        "EXPR1" : [
+            ["EXPR0"],
+            ["EXPR1", "mult", "EXPR0"],
+            ["EXPR1", "div", "EXPR0"],
+            ["EXPR1", "mod", "EXPR0"]
+        ],
+
+        "EXPR2" : [
+            ["EXPR1"],
+            ["EXPR2", "plus", "EXPR1"],
+            ["EXPR2", "minus", "EXPR1"]
+        ],
+
+        "EXPR3" : [
+            ["EXPR2"],
+            ["EXPR3", "greater_or_eq", "EXPR2"],
+            ["EXPR3", "less_or_eq", "EXPR2"],
+            ["EXPR3", "not_equal", "EXPR2"],
+            ["EXPR3", "is_equal", "EXPR2"],
+            ["EXPR3", "greater", "EXPR2"],
+            ["EXPR3", "less", "EXPR2"]
+        ],
+
+        "EXPR4" : [
+            ["EXPR3"],
+            ["EXPR4", "and", "EXPR3"]
+        ],
+
+        "EXPR" : [
+            ["EXPR4"],
+            ["EXPR", "or", "EXPR4"]
+        ]
+    }
+}
