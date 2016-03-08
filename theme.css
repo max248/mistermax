@@ -1,0 +1,43 @@
+body {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+
+/*#Program, #rescode {
+	background-color: #fff;
+	border-style: solid;
+	border-color: #aaa;
+	border-width: 1px;
+    font-family: consolas,"courier new",monospace;
+    font-size: 8pt;
+    height: 300px;
+    width: 100%;
+    padding: 8px;
+    resize: none;
+}*/
+
+#result_msgs {
+	margin-top: 20px;
+}
+
+.unvisible {
+    display: none;
+}
+
+.tree_child_list {
+    margin-left: 6px;
+}
