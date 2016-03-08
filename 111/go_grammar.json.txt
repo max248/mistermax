@@ -166,7 +166,7 @@
         ],
 
         "VAR_DECL" : [
-            ["var_lex", "ident"]
+            ["var_lex", "ident", "TYPE"]
         ],
 
         "EXPR0" : [

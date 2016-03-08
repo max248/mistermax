@@ -1,4 +1,4 @@
-// Создадим объект-синтаксический анализатор
+ // Создадим объект-синтаксический анализатор
 function Parser() {
   var noterm_separator = ".";
   var rule_separator = "|";
@@ -187,7 +187,7 @@ function Parser() {
     // Получим все возможные состояния для данной грамматики
     for (var cur_state = 0; cur_state < states.length; ++cur_state) {
       var t_this = this;
-      var error = false;
+      var  = false;
 
       // Получить из текущего состояния другие путем сдвигов
       // возможных символов грамматики

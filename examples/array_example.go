@@ -1,1 +1,0 @@
-let peoples = 3
