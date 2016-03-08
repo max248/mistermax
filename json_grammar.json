@@ -1,0 +1,45 @@
+{
+    "start"     : "Start",
+    "terms"     :
+    [
+        "open_bracket", "close_bracket", "open_brace", "close_brace", "colon", "comma",
+        "number", "string", "true", "false", "null"
+    ],
+
+    "rules"     : {
+        "Start" : [
+            ["Object", "end"]
+        ],
+        "Value" : [
+            ["string"],
+            ["number"],
+            ["true"],
+            ["false"],
+            ["null"],
+            ["Object"],
+            ["Array"]
+        ],
+        "Key" : [
+            ["string"]
+        ],
+        "Pair" : [
+            ["Key", "colon", "Value"]
+        ],
+        "Pairs" : [
+            ["Pairs", "comma", "Pair"],
+            ["Pair"]
+        ],
+        "Values" : [
+            ["Value"],
+            ["Values", "comma", "Value"]
+        ],
+        "Object" : [
+            ["open_brace", "close_brace"],
+            ["open_brace", "Pairs", "close_brace"]
+        ],
+        "Array" : [
+            ["open_bracket", "close_bracket"],
+            ["open_bracket", "Values", "close_bracket"]
+        ]
+    }
+}

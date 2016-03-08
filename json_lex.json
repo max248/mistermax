@@ -1,0 +1,37 @@
+{
+  "indentation": {
+    "reg": "^\\s+",
+    "skip": true
+  },
+  "ident": {
+    "style" : "ident_lex",
+    "reg": "^[a-zA-Z_]([\\w_]*)",
+    "list": {
+      "true": "true",
+      "false": "false",
+      "null": "null"
+    }
+  },
+  "number": {
+    "style" : "float_const_lex",
+    "reg": "^((?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)",
+    "link": "arrayOfnumber"
+  },
+  "string": {
+    "style" : "string_const_lex",
+    "reg": "^\"(?:[^\"\\\\]|\\\\(?:[\"\\\\\\/bfnrt]|u[0-9a-fA-F]{4}))*\"",
+    "link": "arrayOfStringConst"
+  },
+  "separators": {
+    "style" : "separators",
+    "reg": "^[\\[\\]\\(:,;.\\)\\{\\}]",
+    "list": {
+      "open_bracket": "[",
+      "close_bracket": "]",
+      "colon": ":",
+      "comma": ",",
+      "open_brace": "{",
+      "close_brace": "}"
+    }
+  }
+}

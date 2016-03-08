@@ -1,121 +1,107 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-	<title>My web site</title>
-	<link rel="stylesheet" href="website.css">
-	<script src="website.js"></script>
-	<script src="gui.js"></script>
-	<script src="translator.js"></script>
-	<script src="jsonparser.js"></script>
-	<script src="lexer.js"></script>
-	<script src="parser.js"></script>
-	<script src="jquery.js"></script>
-	<script src="bootstrap.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Транслятор Go - Python</title>
+
+    <!-- Ф-ии для интерфейса -->
+    <script type="text/javascript" src="GUI/gui.js"></script>
+
+    <link rel="stylesheet" href="website.css">
+    <link rel="stylesheet" href="theme.css">
+    <!-- Bootstrap тема -->
+    <link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
 
+    <!-- Транслятор -->
+    <script type="text/javascript" src="Translator/Lexer.js"></script>
+    <script type="text/javascript" src="Translator/Parser.js"></script>
+    <script type="text/javascript" src="Translator/CodeGenerator.js"></script>
+    <script type="text/javascript" src="Translator/Translator.js"></script>
 
-</head>
-<body>
+    <!-- Визуализация синтаксического дерева -->
+    <script type="text/javascript" src="syntax_tree_visualize.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+  </head>
 
-	<marquee behavior="scroll" direction="right">
-		<h2>Translator Swift -> Groovy</h2>
-	</marquee>
-	<center>
-		<div >
-			<div>
-				<table border="2"  width="600" >
-					<tr>
-						<td> Swift
-							<textarea id="source"></textarea>	
-						</td>
-						<td>Groovy
-							<textarea id="output"  readonly="true"></textarea>	
-						</td>
-					</tr>
-					<td>
-					<button id="startBtn" type="button">Translate</button>
-					</td>
-				</table>
-			</div>
-		</div>
-	</center>
-<details >
-        <summary>Output information</summary>
-        <table cellspacing="0" border="1">
-            <thead>
-            <tr>
-                <th>Errors</th>
-            </tr>
-            </thead>
-            <tbody id="errors">
-            </tbody>
-        </table>
-        <div >
-            <div >
-                <table  cellspacing="0" border="1">
-                    <thead>
-                    <tr>
-                        <th>Parse tree</th>
-                    </tr>
-                    </thead>
-                    <tbody id="parseTreeTable">
-                    </tbody>
-                </table>
-            </div>
-            <div >
-                <table  cellspacing="0" border="1">
-                    <thead>
-                    <tr>
-                        <th>Lexeme</th>
-                        <th>Type</th>
-                        <th>Line</th>
-                    </tr>
-                    </thead>
-                    <tbody id="lexemsTable">
-                    </tbody>
-                </table>
-            </div>
+  <body role="document" onload="gui.init()">
+    
+
+      <!-- Поле для ввода кода и результата трансляции -->
+      <marquee behavior="scroll" direction="right">
+    <h2>Translator Swift -> Groovy</h2>
+</marquee>
+<center>
+    <div >
+        <div>
+            <table border="2"  width="600" >
+                <tr>
+                    <td> Swift
+                        <textarea id="Program"></textarea>   
+                    </td>
+                    <td>Groovy
+                        <textarea id="rescode"  readonly="true"></textarea>  
+                    </td>
+                </tr>
+                <td>
+                <button type="button" class="btn btn-sm btn-success" onclick="gui.translate()">Translate</button>
+                </td>
+            </table>
         </div>
-    </details>
+    </div>
+</center>
 
-<script src="jquery.min.js"></script>
-<script src="bootstrap.min.js"></script>
-<script>
-    $("textarea").keydown(function(e) {
-        if(e.keyCode === 9) {
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
+      <div >
+        <!-- Выбрать пример -->
+        <div class="col-sm-4">
+          <div type="button" class="list-group" id="example_select">
+          </div>
 
-            var $this = $(this);
-            var value = $this.val();
-            $this.val(value.substring(0, start)
-                    + "    "
-                    + value.substring(end));
-            this.selectionStart = this.selectionEnd = start + 4;
-            e.preventDefault();
-        }
-    });
-
-    function readFileToSource(path) {
-        var rawFile = new XMLHttpRequest();
-        rawFile.open("GET", path, false);
-        rawFile.onreadystatechange = function ()
-        {
-            if(rawFile.readyState === 4)
-            {
-                if(rawFile.status === 200 || rawFile.status == 0)
-                {
-                    var allText = rawFile.responseText;
-                    document.getElementById("source").innerHTML = allText;
-                    document.getElementById("output").innerHTML = "";
-                }
-            }
-        }
-        rawFile.send(null);
-    }
-</script>
+          
+        </div>
+      </div>
 
 
-</body>
+      
+      <!-- Сообщения об ошибках или успешной трансляции -->
+      <div class="row">
+        <div class="col-sm-12" id="result_msgs">
+        </div>
+      </div>
+      
+
+      <!-- Таблицы -->
+      <div class="page-header">
+        <h2>Таблицы лексем и констант</h2>
+      </div>
+      <div class="row">
+        <!-- Таблица с лексемами -->
+        <div class="col-md-6" id="lexem_table">
+        </div>
+
+
+        <!-- Таблицы с константами -->
+        <div class="col-md-6" id="const_tables">
+        </div>
+      </div>
+
+
+      <!-- Дерево -->
+      <div class="page-header">
+        <h2>Синтаксическое дерево</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" id="syntax_tree">
+          <!-- Дерево -->
+        </div>
+      </div>
+
+    </div>
+  </body>
 </html>

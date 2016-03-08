@@ -1,0 +1,135 @@
+{
+  "indentation": {
+    "reg": "^[ \\t]+",
+    "skip": true
+  },
+  "new_line": {
+    "reg" : "^\\n",
+    "list" : {
+      "new_line" : "\n"
+    }
+  },
+  "ident": {
+    "style" : "ident_lex",
+    "reg": "^[a-zA-Z_]([\\w_]*)",
+    "list": {
+      "func_lex": "func",
+      "if_lex": "if",
+      "else_lex": "else",
+      "for_lex": "for",
+      "range_lex": "range",
+      "case_lex": "case",
+      "break_lex": "break",
+      "default_lex": "default",
+      "switch_lex": "switch",
+      "var_lex": "var",
+      "bool_lex": "bool",
+      "int_lex": "int",
+      "float_lex": "float64",
+      "string_lex": "string",
+      "return_lex" : "return",
+      "main_lex" : "main",
+      "in_lex": "in",
+      "make_lex" : "make"
+    },
+    "link" : "ident"
+  },
+  "bool_const" : {
+    "style" : "bool_const_lex",
+    "reg": "^(true|false)",
+    "link": "arrayOfBoolConst"
+  },
+  "int_const": {
+    "style" : "int_const_lex",
+    "reg": "^(0|([1-9]\\d*))",
+    "link": "arrayOfIntConst"
+  },
+  "float_const": {
+    "style" : "float_const_lex",
+    "reg": "^((?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)",
+    "link": "arrayOfFloatConst"
+  },
+  "string_const": {
+    "style" : "string_const_lex",
+    "reg": "^\"(?:[^\"\\\\]|\\\\(?:[\"\\\\\\/bfnrt]|u[0-9a-fA-F]{4}))*\"",
+    "link": "arrayOfStringConst"
+  },
+  "one_line_comment": {
+    "style" : "comment",
+    "reg": "^\\/\\/.*?\n",
+    "skip": true
+  },
+  "multi_line_comment": {
+    "style" : "comment",
+    "reg": "^\\/\\*[\\s\\S]*?\\*\\/",
+    "skip": true
+  },
+  "operators": {
+    "style" : "operators",
+    "reg": "^(&&?|\\|\\||>=|<=|!=|==|:=|\\+=|-=|/=|%=|\\*=?|\\+\\+?|--?|/|%|=|>|<|!)",
+    "list": {
+      "amp": "&",
+      "and": "&&",
+      "or": "||",
+      "greater_or_eq": ">=",
+      "less_or_eq": "<=",
+      "not_equal": "!=",
+      "is_equal": "==",
+      "assing" : ":=",
+      "plus_eq": "+=",
+      "minus_eq" : "-=",
+      "div_eq" : "/=",
+      "mod_eq" : "%=",
+      "mul_eq" : "*=",
+      "plus": "+",
+      "minus": "-",
+      "mult": "*",
+      "div": "/",
+      "mod": "%",
+      "equating": "=",
+      "greater": ">",
+      "less": "<",
+      "not": "!",
+      "inc" : "++",
+      "dec" : "--"
+    }
+  },
+  "separators": {
+    "style" : "separators",
+    "reg": "^[\\[\\]\\(:,;.\\)\\{\\}]",
+    "list": {
+      "open_parentheses": "(",
+      "close_parentheses": ")",
+      "open_bracket": "[",
+      "close_bracket": "]",
+      "semicolon": ";",
+      "colon": ":",
+      "comma": ",",
+      "point": ".",
+      "open_brace": "{",
+      "close_brace": "}",
+      "strelok": "->"
+    }
+  },
+  "print" : {
+      "style" : "system_lex",
+      "reg": "Print",
+      "list" : {
+         "print" : "Print"
+      }
+  },
+  "scan" : {
+    "style" : "system_lex",
+    "reg": "^fmt\\.Scan",
+    "list" : {
+       "scan" : "fmt.Scan"
+    }
+  },
+  "pow" : {
+    "style" : "system_lex",
+    "reg": "^fmt\\.Pow",
+    "list" : {
+       "pow" : "fmt.Pow"
+    }
+  }
+}
