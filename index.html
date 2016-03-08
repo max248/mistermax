@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Транслятор Go - Python</title>
+
+    <!-- Ф-ии для интерфейса -->
+    <script type="text/javascript" src="GUI/gui.js"></script>
+
+    <link rel="stylesheet" href="website.css">
+    <link rel="stylesheet" href="theme.css">
+    <!-- Bootstrap тема -->
+    <link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
+
+    <!-- Транслятор -->
+    <script type="text/javascript" src="Translator/Lexer.js"></script>
+    <script type="text/javascript" src="Translator/Parser.js"></script>
+    <script type="text/javascript" src="Translator/CodeGenerator.js"></script>
+    <script type="text/javascript" src="Translator/Translator.js"></script>
+
+    <!-- Визуализация синтаксического дерева -->
+    <script type="text/javascript" src="syntax_tree_visualize.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+  </head>
+
+  <body role="document" onload="gui.init()">
+    
+
+      <!-- Поле для ввода кода и результата трансляции -->
+      <marquee behavior="scroll" direction="right">
+    <h2>Translator Swift -> Groovy</h2>
+</marquee>
+<center>
+    <div >
+        <div>
+            <table border="2"  width="600" >
+                <tr>
+                    <td> Swift
+                        <textarea id="Program"></textarea>   
+                    </td>
+                    <td>Groovy
+                        <textarea id="rescode"  readonly="true"></textarea>  
+                    </td>
+                </tr>
+                <td>
+                <button type="button" class="btn btn-sm btn-success" onclick="gui.translate()">Translate</button>
+                </td>
+            </table>
+        </div>
+    </div>
+</center>
+
+      <div >
+        <!-- Выбрать пример -->
+        <div class="col-sm-4">
+          <div type="button" class="list-group" id="example_select">
+          </div>
+
+          
+        </div>
+      </div>
+
+
+      
+      <!-- Сообщения об ошибках или успешной трансляции -->
+      <div class="row">
+        <div class="col-sm-12" id="result_msgs">
+        </div>
+      </div>
+      
+
+      <!-- Таблицы -->
+      <div class="page-header">
+        <h2>Таблицы лексем и констант</h2>
+      </div>
+      <div class="row">
+        <!-- Таблица с лексемами -->
+        <div class="col-md-6" id="lexem_table">
+        </div>
+
+
+        <!-- Таблицы с константами -->
+        <div class="col-md-6" id="const_tables">
+        </div>
+      </div>
+
+
+      <!-- Дерево -->
+      <div class="page-header">
+        <h2>Синтаксическое дерево</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" id="syntax_tree">
+          <!-- Дерево -->
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
