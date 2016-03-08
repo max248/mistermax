@@ -1,4 +1,4 @@
-var gui = (function(){
+﻿var gui = (function(){
     var example_list;
     var example_links = [];
     var translator;
